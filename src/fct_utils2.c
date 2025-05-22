@@ -6,7 +6,7 @@ void	message_error(char *message)
 }
 
 
-void	load_textures(t_data *data, void *mlx)
+int	load_textures(t_data *data)
 {
 	int	w;
 	int	h;
@@ -36,6 +36,7 @@ void	load_textures(t_data *data, void *mlx)
 	if (!data->img_wall || !data->img_floor || !data->img_collectible
 		|| !data->img_exit || !data->img_player)
 		message_error("ERROR: Failed to load one or more texture(s)\n");
+	return (1);
 }
 
 void ft_put_picture(t_data *data, void *mlx, void *win, char **map_valid)
@@ -56,3 +57,21 @@ void ft_put_picture(t_data *data, void *mlx, void *win, char **map_valid)
     mlx_put_image_to_window(mlx, win, data->img_player,
         data->mapv_width * PICTURE_SIZE, data->mapv_height * PICTURE_SIZE);
 }
+
+void    *ft_memset(void *s, int c, size_t n)
+{
+        unsigned char           *a;
+        size_t                          i;
+
+        if (!s)
+                return (0);
+        i = 0;
+        a = (unsigned char *)s;
+        while (i < n)
+        {
+                a[i] = (unsigned char)c;
+                i++;
+        }
+        return (s);
+}
+

@@ -21,7 +21,7 @@ static void check_map_wall(t_data *data)
   }
 }
 
-static void add_character(t_data *data, char c, int map_width, int map_height)
+/*static void add_character(t_data *data, char c, int map_width, int map_height)
 {
   if (c == 'P')
   {
@@ -37,7 +37,7 @@ static void add_character(t_data *data, char c, int map_width, int map_height)
     data->exit_x = map_width;
     data->exit_y = map_height;
   }
-}
+}*/
 
 static void check_map_elements(t_data *data )
 {
@@ -70,7 +70,7 @@ static void check_map(t_data *data)
   }
 }
 
-int load_map(int fd, t_data *data)
+int load_map(t_data *data, int fd)
 {
   char *line;
 
@@ -86,9 +86,11 @@ int load_map(int fd, t_data *data)
       message_error("Error: Map is too large\n");
       free(line);
     }
+    printf("%s",line);
     data->map[data->map_height] = line;
     check_map(data);
     line = get_next_line(fd);
+    break;
   }
   free(line);
   data->map[data->map_height] = NULL;
